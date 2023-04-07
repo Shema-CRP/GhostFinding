@@ -11,7 +11,7 @@ public class PlayerMouvement : MonoBehaviour
     bool hideCursor = true;
     float mouseX = 0f;
     float mouseY = 0f;
-    float lookSpeed = 5f;
+    float lookSpeed;
 
     [SerializeField] Camera PlayerCam;
 
@@ -21,12 +21,7 @@ public class PlayerMouvement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         normalSpeed = GetComponent<PlayerState>().PlayerWalkSpeed;
         sprintSpeed = GetComponent<PlayerState>().PlayerSprintSpeed;
-
-        //if (hideCursor)
-        //{
-        //    Cursor.lockState = CursorLockMode.Locked;
-        //    Cursor.visible = false;
-        //}
+        lookSpeed = GetComponent<PlayerState>().PlayerCameraSensibility;
     }
 
     private void LateUpdate()
@@ -46,15 +41,14 @@ public class PlayerMouvement : MonoBehaviour
         mouseY = Input.GetAxis("Mouse Y") * lookSpeed;
         mouseY = Mathf.Clamp(mouseY, -85f, 85f);
 
-        Debug.Log("Mouse X = " + mouseX.ToString());
-
         float speed = normalSpeed;
         float inputX = Input.GetAxis("Horizontal");
         float inputZ = Input.GetAxis("Vertical");
 
         // rotation
         //Quaternion turn = Quaternion.Euler(mouseY, mouseX, 0f);
-        transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y + mouseX * lookSpeed * Time.deltaTime, transform.rotation.z, transform.rotation.w);
+        transform.eulerAngles += lookSpeed * new Vector3(0, mouseX, 0) * Time.deltaTime;
+        //transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y + mouseX * lookSpeed * Time.deltaTime, transform.rotation.z, transform.rotation.w);
 
         if (Input.GetKey(KeyCode.LeftShift))
         {

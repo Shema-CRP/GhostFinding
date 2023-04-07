@@ -7,4 +7,5 @@ public class PlayerState : MonoBehaviour
     [SerializeField] public float PlayerWalkSpeed;
     [SerializeField] public float PlayerSprintSpeed;
     [SerializeField] public byte PlayerFearLevel;
+    [SerializeField] public float PlayerCameraSensibility;
 }
