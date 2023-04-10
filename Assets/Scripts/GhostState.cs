@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class GhostState : MonoBehaviour
 {
-    [SerializeField] float GhostSpeed;
+    [SerializeField] public float GhostSpeed;
 }
