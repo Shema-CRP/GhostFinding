@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ghost
+  - Noise
+  - FirstGhostPoint
+  - SecondGhostPoint
   layers:
   - Default
   - TransparentFX
@@ -13,8 +16,8 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
+  - Noise
+  - Ghost
   - 
   - 
   - 
