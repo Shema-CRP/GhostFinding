@@ -16,7 +16,20 @@ public class GhostListening : MonoBehaviour
 
         if (listenSomething.Length > 0)
         {
-            GetComponent<GhostAI>().Target = listenSomething[0].transform;
+            // targetNoise will be changed by the louder noise detected
+            GameObject targetNoise = this.gameObject;
+            float louderNoise = -1;
+            foreach (Collider hitNoise in listenSomething)
+            {
+                GameObject noise = hitNoise.gameObject;
+                float thisNoiseIntensivity = noise.GetComponent<NoiseState>().Intensity;
+                if(thisNoiseIntensivity > louderNoise)
+                {
+                    louderNoise = thisNoiseIntensivity;
+                    targetNoise = noise;
+                }
+            }
+            GetComponent<GhostAI>().Target = targetNoise.transform;
         }
         else
         {

@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 4374645485423217510}
   - component: {fileID: 6427460072613755496}
   - component: {fileID: 6225818517181160613}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CameraGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}

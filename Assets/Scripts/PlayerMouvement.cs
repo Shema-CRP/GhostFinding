@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class PlayerMouvement : MonoBehaviour
 {
+    [SerializeField] Camera PlayerCam;
+    [SerializeField] float loudNoise = 8f;
+    [SerializeField] float silenceNoise = 1f;
+
     Rigidbody rb;
     float normalSpeed;
     float sprintSpeed;
@@ -9,8 +13,9 @@ public class PlayerMouvement : MonoBehaviour
     float mouseX = 0f;
     float mouseY = 0f;
     float lookSpeed;
+    GameObject noise;
+    float noiseIntensivity;
 
-    [SerializeField] Camera PlayerCam;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +24,8 @@ public class PlayerMouvement : MonoBehaviour
         normalSpeed = GetComponent<PlayerState>().PlayerWalkSpeed;
         sprintSpeed = GetComponent<PlayerState>().PlayerSprintSpeed;
         lookSpeed = GetComponent<PlayerState>().PlayerCameraSensibility;
+        noise = GameObject.Find("PlayerNoise");
+        noiseIntensivity = noise.GetComponent<NoiseState>().Intensity;
     }
 
     private void LateUpdate()
@@ -43,14 +50,28 @@ public class PlayerMouvement : MonoBehaviour
         float inputZ = Input.GetAxis("Vertical");
 
         // rotation
-        //Quaternion turn = Quaternion.Euler(mouseY, mouseX, 0f);
         transform.eulerAngles += lookSpeed * new Vector3(0, mouseX, 0) * Time.deltaTime;
-        //transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y + mouseX * lookSpeed * Time.deltaTime, transform.rotation.z, transform.rotation.w);
 
+       
+        if(inputX == 0 && inputZ == 0)
+        {
+            // no move no noise
+            noise.SetActive(false);
+        }
+        else
+        { 
+            // walk noise
+            noise.SetActive(true);
+            noiseIntensivity = silenceNoise;
+        }
+
+        // sprint
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            noiseIntensivity = loudNoise;
             speed = sprintSpeed;
         }
+
 
         // calcul de la direction du joueur
         Vector3 forward = PlayerCam.transform.forward;
