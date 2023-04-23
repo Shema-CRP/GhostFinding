@@ -5,7 +5,7 @@ public class GhostAI : MonoBehaviour
 {
     [SerializeField] GameObject FirstDefaultTarget;
     [SerializeField] GameObject SecondDefaultTarget;
-    [SerializeField] public Transform Target;
+    public Transform Target;
     NavMeshAgent Agent;
     public Transform currentDefaultTarget;
 
@@ -32,6 +32,11 @@ public class GhostAI : MonoBehaviour
         if (other.gameObject.CompareTag("SecondGhostPoint"))
         {
             currentDefaultTarget = FirstDefaultTarget.transform;
-        }    
+        }
+        // If touch the player he kill him
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerState>().PlayerLife = PlayerState.EPlayerLife.Dead;
+        }
     }
 }

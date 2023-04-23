@@ -2,8 +2,15 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] GameObject Player;
-    [SerializeField] Animator anim;
+    GameObject Player;
+    Animator anim;
+    
+
+    private void Start()
+    {
+        Player = GameObject.Find("Player");
+        anim = Player.transform.Find("PlayerVision/Canvas/PlayerFear").gameObject.GetComponent<Animator>();
+    }
 
     private void Update()
     {

@@ -15,6 +15,7 @@ public class GeneratorBehaviour : MonoBehaviour
     {
         CurrentEnergy = 0;
         GeneratorState = EGeneratorState.Uncharged;
+        // Search the component in the child GameObject
         GeneratorColor = this.transform.Find("ProgressBar").gameObject.GetComponent<Renderer>();
         // put the screen generator in red when he instantiate
         this.transform.Find("ProgressBar").gameObject.GetComponent<Renderer>().material.color = Color.red;

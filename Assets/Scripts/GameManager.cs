@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject Player;
+    GameObject Player;
+
+    private void Start()
+    {
+        Player = GameObject.Find("Player");
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -14,6 +20,9 @@ public class GameManager : MonoBehaviour
             case PlayerState.EPlayerLife.Live:
                 break;
             case PlayerState.EPlayerLife.Dead:
+                Player.GetComponent<PlayerMouvement>().enabled = false;
+                Player.GetComponent<PlayerInteract>().enabled = false;
+                Player.transform.Find("PlayerVision/Canvas/GameOverScreen").gameObject.SetActive(true);
                 break;
             case PlayerState.EPlayerLife.Escape:
                 break;

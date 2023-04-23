@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class PlayerMouvement : MonoBehaviour
 {
-    [SerializeField] Camera PlayerCam;
     [SerializeField] float loudNoise = 8f;
     [SerializeField] float silenceNoise = 1f;
 
+    Camera PlayerCam;
     Rigidbody rb;
     float normalSpeed;
     float sprintSpeed;
@@ -20,6 +20,7 @@ public class PlayerMouvement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerCam = this.transform.Find("PlayerVision").gameObject.GetComponent<Camera>();
         rb = GetComponent<Rigidbody>();
         normalSpeed = GetComponent<PlayerState>().PlayerWalkSpeed;
         sprintSpeed = GetComponent<PlayerState>().PlayerSprintSpeed;
