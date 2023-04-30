@@ -14,7 +14,9 @@ public class PlayerMouvement : MonoBehaviour
     float mouseY = 0f;
     float lookSpeed;
     GameObject noise;
+    GameObject monitor;
     float noiseIntensivity;
+    bool monitorActivate = false;
 
 
     // Start is called before the first frame update
@@ -26,7 +28,11 @@ public class PlayerMouvement : MonoBehaviour
         sprintSpeed = GetComponent<PlayerState>().PlayerSprintSpeed;
         lookSpeed = GetComponent<PlayerState>().PlayerCameraSensibility;
         noise = GameObject.Find("PlayerNoise");
+        monitor = GameObject.Find("Monitor");
         noiseIntensivity = noise.GetComponent<NoiseState>().Intensity;
+
+        // unset the monitor in the begin of the game
+        monitor.SetActive(false);
     }
 
     private void LateUpdate()
@@ -73,6 +79,18 @@ public class PlayerMouvement : MonoBehaviour
             speed = sprintSpeed;
         }
 
+        // activation/desactivation monitor
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            monitorActivate = !monitorActivate;
+            monitor.SetActive(monitorActivate);
+        }
+
+        // echap
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameObject.Find("BootManager").GetComponent<BootManager>().ChangeScene("Game", "Menu");
+        }
 
         // calcul de la direction du joueur
         Vector3 forward = PlayerCam.transform.forward;

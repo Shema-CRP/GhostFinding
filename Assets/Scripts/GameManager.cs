@@ -5,10 +5,15 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     GameObject Player;
+    byte NbTotalGenerator;
+    byte NbActiveGenerator;
 
     private void Start()
     {
         Player = GameObject.Find("Player");
+        // Count generators
+        NbTotalGenerator = (byte) GameObject.Find("GeneratorList").transform.childCount;
+        NbActiveGenerator = 0;
     }
 
     // Update is called once per frame
@@ -23,13 +28,26 @@ public class GameManager : MonoBehaviour
                 Player.GetComponent<PlayerMouvement>().enabled = false;
                 Player.GetComponent<PlayerInteract>().enabled = false;
                 Player.transform.Find("PlayerVision/Canvas/GameOverScreen").gameObject.SetActive(true);
+
+                // débloquer le curseur
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
                 break;
             case PlayerState.EPlayerLife.Escape:
+                GameObject.Find("BootManager").GetComponent<BootManager>().ChangeScene("Game", "Menu");
                 break;
             default:
                 break;
         }
+    }
 
-        // check the state of generator to open the exit door
+    public void PowerDoor()
+    {
+        NbActiveGenerator += 1;
+        if (NbActiveGenerator >= NbTotalGenerator)
+        {
+            GameObject.Find("EndDoor").SetActive(true);
+            GameObject.Find("ExitDoor").SetActive(false);
+        }
     }
 }

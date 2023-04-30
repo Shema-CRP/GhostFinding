@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9178989312530801624}
+  - component: {fileID: -2363266656996037667}
+  - component: {fileID: -3820683801039477578}
   m_Layer: 0
   m_Name: EndDoor
   m_TagString: Untagged
@@ -32,6 +34,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &-2363266656996037667
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084589329416174736}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8869554, y: 7.8949594, z: 10.247678}
+  m_Center: {x: -0.12498301, y: 3.4474797, z: -0.3336234}
+--- !u!114 &-3820683801039477578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084589329416174736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97aad303fd53d704aa0698d2f586f51c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2985427299700741612
 GameObject:
   m_ObjectHideFlags: 0

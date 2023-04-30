@@ -47,7 +47,6 @@ GameObject:
   - component: {fileID: 63346298204069241}
   - component: {fileID: 6808140135951772620}
   - component: {fileID: 8682176098339795594}
-  - component: {fileID: 5686617934376049851}
   m_Layer: 0
   m_Name: Up
   m_TagString: Untagged
@@ -120,19 +119,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5686617934376049851
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1339208539769173684}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3755944113630430500
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,7 +130,6 @@ GameObject:
   - component: {fileID: 1464343744826954022}
   - component: {fileID: 7599371299965442944}
   - component: {fileID: 2724412050440854317}
-  - component: {fileID: 1324446228415125508}
   m_Layer: 0
   m_Name: Screen
   m_TagString: Untagged
@@ -217,20 +202,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1324446228415125508
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3755944113630430500}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &4908233593525312596
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +213,6 @@ GameObject:
   - component: {fileID: 8858321058055137724}
   - component: {fileID: 822856521268246304}
   - component: {fileID: 8719931793944960401}
-  - component: {fileID: 7097314797104396012}
   m_Layer: 0
   m_Name: Down
   m_TagString: Untagged
@@ -315,19 +285,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7097314797104396012
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4908233593525312596}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5854433980293594268
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +296,6 @@ GameObject:
   - component: {fileID: 6026413493170039029}
   - component: {fileID: 2456462094171526976}
   - component: {fileID: 4347729228120570125}
-  - component: {fileID: 532107494946496265}
   m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
@@ -412,19 +368,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &532107494946496265
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5854433980293594268}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8347130373403468134
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,7 +379,6 @@ GameObject:
   - component: {fileID: 8116414272877716290}
   - component: {fileID: 1471893936628033798}
   - component: {fileID: 5572205404229520081}
-  - component: {fileID: 3148534462955028672}
   m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
@@ -509,16 +451,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3148534462955028672
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8347130373403468134}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
