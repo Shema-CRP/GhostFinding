@@ -31,6 +31,7 @@ public class GeneratorBehaviour : MonoBehaviour
             if (CurrentEnergy > EnergyMax)
             {
                 GeneratorState = EGeneratorState.Charged;
+                GameObject.Find("GameManager").GetComponent<GameManager>().PowerDoor();
                 this.transform.Find("ProgressBar").gameObject.GetComponent<Renderer>().material.color = Color.green;
             }
         }

@@ -6711,6 +6711,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6121639238277102060, guid: 849ed43c8f24ea840bfe0e6b6f036c35,
         type: 3}
+      propertyPath: GeneratorState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6121639238277102060, guid: 849ed43c8f24ea840bfe0e6b6f036c35,
+        type: 3}
       propertyPath: EnergyReloadSpeed
       value: 1
       objectReference: {fileID: 0}
@@ -8970,6 +8975,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Generator
       objectReference: {fileID: 0}
+    - target: {fileID: 6121639238277102060, guid: 849ed43c8f24ea840bfe0e6b6f036c35,
+        type: 3}
+      propertyPath: GeneratorState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6241699632759410666, guid: 849ed43c8f24ea840bfe0e6b6f036c35,
         type: 3}
       propertyPath: m_RootOrder
@@ -9417,7 +9427,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1237895789}
-  - component: {fileID: 1237895788}
   m_Layer: 0
   m_Name: CoinSpawner
   m_TagString: Untagged
@@ -9425,18 +9434,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1237895788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1237895787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2926a74a13f371c42a823ed3c529da12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1237895789
 Transform:
   m_ObjectHideFlags: 0
@@ -10898,7 +10895,7 @@ PrefabInstance:
     - target: {fileID: 2084589329416174736, guid: a28f2148f0db42645af4fb2cf95b67c3,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9178989312530801624, guid: a28f2148f0db42645af4fb2cf95b67c3,
         type: 3}
@@ -13117,6 +13114,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Generator (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6121639238277102060, guid: 849ed43c8f24ea840bfe0e6b6f036c35,
+        type: 3}
+      propertyPath: GeneratorState
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6241699632759410666, guid: 849ed43c8f24ea840bfe0e6b6f036c35,
         type: 3}
@@ -15785,6 +15787,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Generator
+      objectReference: {fileID: 0}
+    - target: {fileID: 6121639238277102060, guid: 849ed43c8f24ea840bfe0e6b6f036c35,
+        type: 3}
+      propertyPath: GeneratorState
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6241699632759410666, guid: 849ed43c8f24ea840bfe0e6b6f036c35,
         type: 3}

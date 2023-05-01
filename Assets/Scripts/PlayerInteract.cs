@@ -25,6 +25,10 @@ public class PlayerInteract : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
+                if (hitObject.collider.CompareTag("PoolerInstance"))
+                {
+                    Debug.Log(hitObject.collider.name);
+                }
                 if (hitObject.collider.CompareTag("ToolGenerator"))
                 {
                     hitObject.collider.gameObject.GetComponent<GeneratorBehaviour>().IncrementEnergy();

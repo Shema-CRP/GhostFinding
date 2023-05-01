@@ -5,12 +5,20 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     GameObject Player;
+    GameObject EndDoor;
+    GameObject ExitDoor;
     byte NbTotalGenerator;
     byte NbActiveGenerator;
 
     private void Start()
     {
         Player = GameObject.Find("Player");
+
+        EndDoor = GameObject.Find("EndDoor");
+        EndDoor.SetActive(false);
+
+        ExitDoor = GameObject.Find("ExitDoor");
+
         // Count generators
         NbTotalGenerator = (byte) GameObject.Find("GeneratorList").transform.childCount;
         NbActiveGenerator = 0;
@@ -44,10 +52,11 @@ public class GameManager : MonoBehaviour
     public void PowerDoor()
     {
         NbActiveGenerator += 1;
+        Debug.Log("battery : " + NbActiveGenerator + " / " + NbTotalGenerator);
         if (NbActiveGenerator >= NbTotalGenerator)
         {
-            GameObject.Find("EndDoor").SetActive(true);
-            GameObject.Find("ExitDoor").SetActive(false);
+            EndDoor.SetActive(true);
+            ExitDoor.SetActive(false);
         }
     }
 }

@@ -84,6 +84,9 @@ public class PlayerMouvement : MonoBehaviour
         {
             monitorActivate = !monitorActivate;
             monitor.SetActive(monitorActivate);
+            // Spawn coin
+            GameObject coin = Pooler.Instance.GeneratePool(new Vector3(Random.Range(-100, 100), 5, Random.Range(-100, 100)));
+            Instantiate(coin);
         }
 
         // echap
