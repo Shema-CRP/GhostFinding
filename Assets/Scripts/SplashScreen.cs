@@ -14,6 +14,6 @@ public class SplashScreen : MonoBehaviour
     IEnumerator ShowLogo(float timeToWait)
     {
         yield return new WaitForSeconds(timeToWait);
-        GameObject.Find("BootManager").GetComponent<BootManager>().ChangeScene("Splashscreen", "Menu");
+        BootManager.Instance.ChangeScene("Splashscreen", "Menu");
     }
 }

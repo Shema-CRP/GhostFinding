@@ -14,7 +14,7 @@ public class MenuManager : MonoBehaviour
     public void LaunchGame()
     {
         Debug.Log("Find");
-        GameObject.Find("BootManager").GetComponent<BootManager>().ChangeScene("Menu", "Game");
+        BootManager.Instance.ChangeScene("Menu", "Game");
     }
 
     public void QuitGame()

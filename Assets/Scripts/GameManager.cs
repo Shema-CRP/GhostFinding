@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     GameObject Player;
     GameObject EndDoor;
     GameObject ExitDoor;
+    PlayerState PlayerState;
     byte NbTotalGenerator;
     byte NbActiveGenerator;
 
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
 
         ExitDoor = GameObject.Find("ExitDoor");
 
+        PlayerState = Player.GetComponent<PlayerState>();
+
         // Count generators
         NbTotalGenerator = (byte) GameObject.Find("GeneratorList").transform.childCount;
         NbActiveGenerator = 0;
@@ -28,7 +31,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // check if the player is alive or dead
-        switch (Player.GetComponent<PlayerState>().PlayerLife)
+        switch (PlayerState.PlayerLife)
         {
             case PlayerState.EPlayerLife.Live:
                 break;
@@ -42,7 +45,7 @@ public class GameManager : MonoBehaviour
                 Cursor.visible = true;
                 break;
             case PlayerState.EPlayerLife.Escape:
-                GameObject.Find("BootManager").GetComponent<BootManager>().ChangeScene("Game", "Menu");
+                BootManager.Instance.ChangeScene("Game", "Menu");
                 break;
             default:
                 break;

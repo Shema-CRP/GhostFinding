@@ -34,8 +34,16 @@ public class GeneratorBehaviour : MonoBehaviour
                 GameObject.Find("GameManager").GetComponent<GameManager>().PowerDoor();
                 this.transform.Find("ProgressBar").gameObject.GetComponent<Renderer>().material.color = Color.green;
             }
+            // activate the noise
+            this.transform.Find("Noise").gameObject.SetActive(true);
         }
     }
 
-
+    /// <summary>
+    /// Called when the player let the generator while he feeds him
+    /// </summary>
+    public void InterruptEnergy()
+    {
+        this.transform.Find("Noise").gameObject.SetActive(false);
+    }
 }

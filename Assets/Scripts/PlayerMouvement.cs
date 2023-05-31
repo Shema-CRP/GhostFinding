@@ -46,7 +46,7 @@ public class PlayerMouvement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         mouseX = Input.GetAxis("Mouse X");
         mouseY = Input.GetAxis("Mouse Y") * lookSpeed;
@@ -57,7 +57,7 @@ public class PlayerMouvement : MonoBehaviour
         float inputZ = Input.GetAxis("Vertical");
 
         // rotation
-        transform.eulerAngles += lookSpeed * new Vector3(0, mouseX, 0) * Time.deltaTime;
+        transform.eulerAngles += lookSpeed * new Vector3(0, mouseX, 0) * Time.fixedDeltaTime;
 
        
         if(inputX == 0 && inputZ == 0)
@@ -84,15 +84,12 @@ public class PlayerMouvement : MonoBehaviour
         {
             monitorActivate = !monitorActivate;
             monitor.SetActive(monitorActivate);
-            // Spawn coin
-            GameObject coin = Pooler.Instance.GeneratePool(new Vector3(Random.Range(-100, 100), 5, Random.Range(-100, 100)));
-            Instantiate(coin);
         }
 
         // echap
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            GameObject.Find("BootManager").GetComponent<BootManager>().ChangeScene("Game", "Menu");
+            BootManager.Instance.ChangeScene("Game", "Menu");
         }
 
         // calcul de la direction du joueur
@@ -105,6 +102,6 @@ public class PlayerMouvement : MonoBehaviour
 
         Vector3 move = (forward * inputZ + right * inputX).normalized;
 
-        rb.MovePosition(rb.position + move * speed * Time.deltaTime);
+        rb.MovePosition(rb.position + move * speed * Time.fixedDeltaTime);
     }
 }

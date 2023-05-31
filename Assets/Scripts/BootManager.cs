@@ -5,7 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class BootManager : MonoBehaviour
 {
+    public enum ESceneType
+    {
+        Boot = 0,
+        SplashScreen = 1,
+        Menu = 2,
+        Game = 3
+    }
     Animator anim;
+    public static BootManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
