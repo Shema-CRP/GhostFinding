@@ -45,6 +45,23 @@ public class PlayerMouvement : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        // activation/desactivation monitor
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            monitorActivate = !monitorActivate;
+            Debug.Log(monitorActivate);
+            monitor.SetActive(monitorActivate);
+        }
+
+        // echap
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            BootManager.Instance.ChangeScene("Game", "Menu");
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -79,18 +96,6 @@ public class PlayerMouvement : MonoBehaviour
             speed = sprintSpeed;
         }
 
-        // activation/desactivation monitor
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            monitorActivate = !monitorActivate;
-            monitor.SetActive(monitorActivate);
-        }
-
-        // echap
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            BootManager.Instance.ChangeScene("Game", "Menu");
-        }
 
         // calcul de la direction du joueur
         Vector3 forward = PlayerCam.transform.forward;
