@@ -60,6 +60,15 @@ public class PlayerMouvement : MonoBehaviour
         {
             BootManager.Instance.ChangeScene("Game", "Menu");
         }
+
+        // enclenchement des leurres
+        if (monitorActivate)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+
+            }
+        }
     }
 
     // Update is called once per frame
