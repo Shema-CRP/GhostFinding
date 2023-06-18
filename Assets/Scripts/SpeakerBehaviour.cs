@@ -1,26 +1,78 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpeakerBehaviour : MonoBehaviour
 {
     public enum ESpeakerState { Ready, InUse, Charging, Desactivated };
-    [SerializeField] AudioSource sound;
-    [SerializeField] AudioClip diffuser;
+    [SerializeField] ESpeakerState CurrentState;
+    [SerializeField] AudioClip sound;
+    [SerializeField] AudioSource diffuser;
+    [SerializeField] int ChargingPeak;
+    [SerializeField] int CurrentCharge;
+    GameObject Noise;
 
     void Start()
     {
-        sound = (AudioSource) Resources.Load("Sounds/SoundsEffects/speakerSound.wav");
-        diffuser = this.transform.Find("body/Cube").GetComponent<AudioClip>();
+        sound = (AudioClip) Resources.Load("Sounds/SoundsEffects/speakerSound");
+        diffuser = this.transform.Find("body/Cube").GetComponent<AudioSource>();
+        CurrentState = ESpeakerState.Ready;
+        CurrentCharge = ChargingPeak;
+        Noise = this.transform.Find("Noise").gameObject;
     }
 
+    /// <summary>
+    /// Execute the sound of speaker if he is ready
+    /// </summary>
     public void LaunchSound()
     {
-        AudioManager.Instance.DiffuseSound(sound, diffuser);
+        if (CurrentState == ESpeakerState.Ready)
+        {
+            CurrentState = ESpeakerState.InUse;
+            Noise.SetActive(true);
+            AudioManager.Instance.DiffuseSound(diffuser, sound);
+        }
+        else
+        {
+            Debug.Log("Speaker not ready");
+        }
+    }
+
+    /// <summary>
+    /// Change the state of the speaker at the end of the sound
+    /// </summary>
+    public void InterruptSound()
+    {
+        CurrentCharge = 0;
+        CurrentState = ESpeakerState.Charging;
+        Noise.SetActive(false);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public bool IsSoundPlaying()
+    {
+        if (diffuser.isPlaying)
+        {
+            return true;
+        }
+        // After the sound is stopped, turn the state of this speaker in charging mode
+        if (CurrentState == ESpeakerState.InUse)
+        {
+            InterruptSound();
+        }
+        return false;
     }
 
     public void Charging()
     {
-
+        CurrentCharge++;
+        if (CurrentCharge >= ChargingPeak)
+        {
+            CurrentState = ESpeakerState.Ready;
+        }
     }
 }

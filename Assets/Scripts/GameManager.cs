@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     PlayerState PlayerState;
     byte NbTotalGenerator;
     byte NbActiveGenerator;
+    int totalChild;
+
+    GameObject[] SpeakersObject;
+    SpeakerBehaviour[] Speakers;
 
     private void Start()
     {
@@ -23,8 +27,18 @@ public class GameManager : MonoBehaviour
         PlayerState = Player.GetComponent<PlayerState>();
 
         // Count generators
-        NbTotalGenerator = (byte) GameObject.Find("GeneratorList").transform.childCount;
+        NbTotalGenerator = (byte) GameObject.Find("GeneratorsList").transform.childCount;
         NbActiveGenerator = 0;
+
+        // Get Speakers scripts
+        totalChild = GameObject.Find("SpeakersList").transform.childCount;
+        SpeakersObject = new GameObject[totalChild];
+        Speakers = new SpeakerBehaviour[totalChild];
+        for (int i = 0; i < totalChild; i++)
+        {
+            SpeakersObject[i] = GameObject.Find("SpeakersList").transform.GetChild(i).gameObject;
+            Speakers[i] = SpeakersObject[i].GetComponent<SpeakerBehaviour>();
+        }
     }
 
     // Update is called once per frame
@@ -49,6 +63,13 @@ public class GameManager : MonoBehaviour
                 break;
             default:
                 break;
+        }
+
+        // Charge the speakers each frames if they are uncharged
+        for (int i = 0; i < totalChild; i++)
+        {
+            if (!Speakers[i].IsSoundPlaying())
+                Speakers[i].Charging();
         }
     }
 

@@ -10,10 +10,16 @@ public class GeneratorBehaviour : MonoBehaviour
     [SerializeField] float EnergyMax;
     [SerializeField] float CurrentEnergy;
     [SerializeField] float EnergyReloadSpeed;
+    AudioClip generatorChargingSound;
+    AudioClip generatorChargedSound;
+    AudioSource soundDiffuser;
     Renderer GeneratorColor;
 
     private void Start()
     {
+        generatorChargingSound = (AudioClip)Resources.Load("Sounds/SoundsEffects/generatorSound");
+        generatorChargedSound = (AudioClip)Resources.Load("Sounds/SoundsEffects/generatorCharged");
+        soundDiffuser = transform.Find("Cube").GetComponent<AudioSource>();
         CurrentEnergy = 0;
         GeneratorState = EGeneratorState.Uncharged;
         // Search the component in the child GameObject
@@ -36,6 +42,8 @@ public class GeneratorBehaviour : MonoBehaviour
             }
             // activate the noise
             this.transform.Find("Noise").gameObject.SetActive(true);
+            // diffuse sound
+            AudioManager.Instance.DiffuseSound(soundDiffuser, generatorChargingSound);
         }
     }
 
@@ -45,5 +53,6 @@ public class GeneratorBehaviour : MonoBehaviour
     public void InterruptEnergy()
     {
         this.transform.Find("Noise").gameObject.SetActive(false);
+        AudioManager.Instance.DiffuseSound(soundDiffuser, generatorChargedSound);
     }
 }

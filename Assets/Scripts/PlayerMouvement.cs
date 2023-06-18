@@ -4,6 +4,9 @@ public class PlayerMouvement : MonoBehaviour
 {
     [SerializeField] float loudNoise = 8f;
     [SerializeField] float silenceNoise = 1f;
+    
+    GameObject[] SpeakersObject;
+    SpeakerBehaviour[] Speakers;
 
     Camera PlayerCam;
     Rigidbody rb;
@@ -22,6 +25,7 @@ public class PlayerMouvement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int totalChild;
         PlayerCam = this.transform.Find("PlayerVision").gameObject.GetComponent<Camera>();
         rb = GetComponent<Rigidbody>();
         normalSpeed = GetComponent<PlayerState>().PlayerWalkSpeed;
@@ -30,6 +34,16 @@ public class PlayerMouvement : MonoBehaviour
         noise = GameObject.Find("PlayerNoise");
         monitor = GameObject.Find("Monitor");
         noiseIntensivity = noise.GetComponent<NoiseState>().Intensity;
+
+        // récupère les leurres dans le gameobject Speakerlist ils doivent être dans l'ordre afin de les récuperer correctement dans le tableau
+        totalChild = GameObject.Find("SpeakersList").transform.childCount;
+        SpeakersObject = new GameObject[totalChild];
+        Speakers = new SpeakerBehaviour[totalChild];
+        for (int i = 0; i < totalChild; i++)
+        {
+            SpeakersObject[i] = GameObject.Find("SpeakersList").transform.GetChild(i).gameObject;
+            Speakers[i] = SpeakersObject[i].GetComponent<SpeakerBehaviour>();
+        }
 
         // unset the monitor in the begin of the game
         monitor.SetActive(false);
@@ -66,7 +80,19 @@ public class PlayerMouvement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-
+                Speakers[0].LaunchSound();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                Speakers[1].LaunchSound();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                Speakers[2].LaunchSound();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                Speakers[3].LaunchSound();
             }
         }
     }

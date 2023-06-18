@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe4f7a1abbac0d499e82f2408c8964f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RadiusLisening: 10
+  RadiusLisening: 25
   NoiseLayer:
     serializedVersion: 2
     m_Bits: 128
