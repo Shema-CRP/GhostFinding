@@ -8,4 +8,6 @@ public class PlayerState : MonoBehaviour
     [SerializeField] public float PlayerSprintSpeed;
     [SerializeField] public byte PlayerFearLevel;
     [SerializeField] public float PlayerCameraSensibility;
+    [SerializeField] public float StaminaDrain;
+    [SerializeField] public float exhaustSpeed;
 }

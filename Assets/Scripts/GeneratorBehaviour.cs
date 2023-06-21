@@ -39,6 +39,7 @@ public class GeneratorBehaviour : MonoBehaviour
                 GeneratorState = EGeneratorState.Charged;
                 GameObject.Find("GameManager").GetComponent<GameManager>().PowerDoor();
                 this.transform.Find("ProgressBar").gameObject.GetComponent<Renderer>().material.color = Color.green;
+                AudioManager.Instance.DiffuseSound(soundDiffuser, generatorChargedSound);
             }
             // activate the noise
             this.transform.Find("Noise").gameObject.SetActive(true);
@@ -53,6 +54,7 @@ public class GeneratorBehaviour : MonoBehaviour
     public void InterruptEnergy()
     {
         this.transform.Find("Noise").gameObject.SetActive(false);
-        AudioManager.Instance.DiffuseSound(soundDiffuser, generatorChargedSound);
+        if(GeneratorState == EGeneratorState.Uncharged)
+            AudioManager.Instance.DiffuseSound(soundDiffuser, generatorChargedSound);
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMouvement : MonoBehaviour
 {
@@ -12,7 +13,10 @@ public class PlayerMouvement : MonoBehaviour
     Rigidbody rb;
     float normalSpeed;
     float sprintSpeed;
+    float exhaustSpeed;
+    float stamina;
     bool hideCursor = true;
+    bool exhausted;
     float mouseX = 0f;
     float mouseY = 0f;
     float lookSpeed;
@@ -20,7 +24,9 @@ public class PlayerMouvement : MonoBehaviour
     GameObject monitor;
     float noiseIntensivity;
     bool monitorActivate = false;
-
+    float maxStamina = 1f;
+    float drainStamina;
+    UnityEngine.UI.Image staminaBar;
 
     // Start is called before the first frame update
     void Start()
@@ -31,9 +37,14 @@ public class PlayerMouvement : MonoBehaviour
         normalSpeed = GetComponent<PlayerState>().PlayerWalkSpeed;
         sprintSpeed = GetComponent<PlayerState>().PlayerSprintSpeed;
         lookSpeed = GetComponent<PlayerState>().PlayerCameraSensibility;
+        exhaustSpeed = GetComponent<PlayerState>().exhaustSpeed;
+        stamina = maxStamina;
+        exhausted = false;
+        drainStamina = GetComponent<PlayerState>().StaminaDrain;
         noise = GameObject.Find("PlayerNoise");
         monitor = GameObject.Find("Monitor");
         noiseIntensivity = noise.GetComponent<NoiseState>().Intensity;
+        staminaBar = GameObject.Find("Canvas/Stamina/Fill").GetComponent<Image>();
 
         // récupère les leurres dans le gameobject Speakerlist ils doivent être dans l'ordre afin de les récuperer correctement dans le tableau
         totalChild = GameObject.Find("SpeakersList").transform.childCount;
@@ -124,12 +135,52 @@ public class PlayerMouvement : MonoBehaviour
             noiseIntensivity = silenceNoise;
         }
 
-        // sprint
-        if (Input.GetKey(KeyCode.LeftShift))
+        // slow the player if he's exhausted and avoid him to sprint
+        if (exhausted)
         {
-            noiseIntensivity = loudNoise;
-            speed = sprintSpeed;
+            // exhaust noise
+            noise.SetActive(true);
+            noiseIntensivity = silenceNoise;
+            staminaBar.color = Color.red;
+            speed = exhaustSpeed;
+            if (stamina < 1)
+            {
+                stamina += drainStamina;
+                staminaBar.fillAmount = stamina;
+            }
+            else
+            {
+                exhausted = false;
+            }
         }
+        else
+        {
+            staminaBar.color = Color.yellow;
+            // sprint 
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                if (stamina > 0)
+                {
+                    stamina -= drainStamina;
+                    noiseIntensivity = loudNoise;
+                    speed = sprintSpeed;
+                    staminaBar.fillAmount = stamina;
+                }
+                else
+                {
+                    exhausted = true;
+                }
+            }
+            else
+            {
+                if (stamina < 1)
+                {
+                    stamina += drainStamina;
+                    staminaBar.fillAmount = stamina;
+                }
+            }
+        }
+
 
 
         // calcul de la direction du joueur

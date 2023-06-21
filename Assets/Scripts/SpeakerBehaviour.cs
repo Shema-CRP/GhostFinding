@@ -12,12 +12,15 @@ public class SpeakerBehaviour : MonoBehaviour
     [SerializeField] int ChargingPeak;
     [SerializeField] int CurrentCharge;
     GameObject Noise;
+    MeshRenderer CameraLogoColor;
 
     void Start()
     {
         sound = (AudioClip) Resources.Load("Sounds/SoundsEffects/speakerSound");
         diffuser = this.transform.Find("body/Cube").GetComponent<AudioSource>();
         CurrentState = ESpeakerState.Ready;
+        CameraLogoColor = this.transform.Find("CameraViewLogo").gameObject.GetComponent<MeshRenderer>();
+        CameraLogoColor.materials[0].color = Color.green;
         CurrentCharge = ChargingPeak;
         Noise = this.transform.Find("Noise").gameObject;
     }
@@ -30,6 +33,7 @@ public class SpeakerBehaviour : MonoBehaviour
         if (CurrentState == ESpeakerState.Ready)
         {
             CurrentState = ESpeakerState.InUse;
+            CameraLogoColor.materials[0].color = Color.yellow;
             Noise.SetActive(true);
             AudioManager.Instance.DiffuseSound(diffuser, sound);
         }
@@ -46,6 +50,7 @@ public class SpeakerBehaviour : MonoBehaviour
     {
         CurrentCharge = 0;
         CurrentState = ESpeakerState.Charging;
+        CameraLogoColor.materials[0].color = Color.red;
         Noise.SetActive(false);
     }
 
@@ -73,6 +78,8 @@ public class SpeakerBehaviour : MonoBehaviour
         if (CurrentCharge >= ChargingPeak)
         {
             CurrentState = ESpeakerState.Ready;
+            CameraLogoColor.materials[0].color = Color.green;
+            CurrentCharge = ChargingPeak;
         }
     }
 }
