@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -17,7 +18,7 @@ public class AudioManager : MonoBehaviour
 
     public void DiffuseSound(AudioSource source, AudioClip sound)
     {
-        // enclencher le son si il est eteind ou si le son joué est différent de celui demandé
+        // activate the sound if it is off or if the sound played is different from that requested
         if (source.isPlaying == false || source.clip != sound)
         {
             source.clip = sound;

@@ -11,6 +11,7 @@ public class GeneratorBehaviour : MonoBehaviour
     [SerializeField] float CurrentEnergy;
     [SerializeField] float EnergyReloadSpeed;
     AudioClip generatorChargingSound;
+    AudioClip generatorInterruptSound;
     AudioClip generatorChargedSound;
     AudioSource soundDiffuser;
     Renderer GeneratorColor;
@@ -19,6 +20,7 @@ public class GeneratorBehaviour : MonoBehaviour
     {
         generatorChargingSound = (AudioClip)Resources.Load("Sounds/SoundsEffects/generatorSound");
         generatorChargedSound = (AudioClip)Resources.Load("Sounds/SoundsEffects/generatorCharged");
+        generatorInterruptSound = (AudioClip)Resources.Load("Sounds/SoundsEffects/generatorSoundDefuse");
         soundDiffuser = transform.Find("Cube").GetComponent<AudioSource>();
         CurrentEnergy = 0;
         GeneratorState = EGeneratorState.Uncharged;
@@ -55,6 +57,6 @@ public class GeneratorBehaviour : MonoBehaviour
     {
         this.transform.Find("Noise").gameObject.SetActive(false);
         if(GeneratorState == EGeneratorState.Uncharged)
-            AudioManager.Instance.DiffuseSound(soundDiffuser, generatorChargedSound);
+            AudioManager.Instance.DiffuseSound(soundDiffuser, generatorInterruptSound);
     }
 }

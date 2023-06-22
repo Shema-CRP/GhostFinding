@@ -277,7 +277,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 171
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -1100,6 +1100,7 @@ MonoBehaviour:
   PlayerFearLevel: 1
   PlayerCameraSensibility: 0
   StaminaDrain: 0
+  exhaustSpeed: 0
 --- !u!54 &3194172950583707747
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1147,8 +1148,6 @@ MonoBehaviour:
   GhostLayer:
     serializedVersion: 2
     m_Bits: 256
-  fearHeartBeat: {fileID: 0}
-  panicHeartBeat: {fileID: 0}
 --- !u!114 &4820379237424218306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1193,7 +1192,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 200
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -2022,14 +2021,14 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 170
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

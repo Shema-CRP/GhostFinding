@@ -1030,6 +1030,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 474677457010928514, guid: 0a5084d089e87194d95304ab922c74c5,
+        type: 3}
+      propertyPath: framesRoll
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 474677457010928514, guid: 0a5084d089e87194d95304ab922c74c5,
+        type: 3}
+      propertyPath: PlayerCamera
+      value: 
+      objectReference: {fileID: 1913447504}
+    - target: {fileID: 474677457010928514, guid: 0a5084d089e87194d95304ab922c74c5,
+        type: 3}
+      propertyPath: chanceToAppears
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 841619908291113994, guid: 0a5084d089e87194d95304ab922c74c5,
         type: 3}
       propertyPath: m_Name
@@ -6291,6 +6306,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Speaker1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334339507878007475, guid: d50526229ac34114c9886101b245794b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334339507878007475, guid: d50526229ac34114c9886101b245794b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334339507878007475, guid: d50526229ac34114c9886101b245794b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334339507878007475, guid: d50526229ac34114c9886101b245794b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334339507878007475, guid: d50526229ac34114c9886101b245794b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334339507878007475, guid: d50526229ac34114c9886101b245794b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5600480750505153110, guid: d50526229ac34114c9886101b245794b,
         type: 3}
@@ -15484,6 +15529,12 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4969382973136230509, guid: 69c865ea1921b064dbea43d87c084e51, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 69c865ea1921b064dbea43d87c084e51, type: 3}
+--- !u!20 &1913447504 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6544881918253575829, guid: 69c865ea1921b064dbea43d87c084e51,
+    type: 3}
+  m_PrefabInstance: {fileID: 1913447503}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1933251962
 PrefabInstance:
   m_ObjectHideFlags: 0

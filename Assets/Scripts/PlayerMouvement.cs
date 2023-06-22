@@ -27,6 +27,14 @@ public class PlayerMouvement : MonoBehaviour
     float maxStamina = 1f;
     float drainStamina;
     UnityEngine.UI.Image staminaBar;
+    AudioClip exhaustSound;
+    AudioSource playerHead;
+    AudioClip walkSound1;
+    AudioClip walkSound2;
+    AudioClip sprintSound1;
+    AudioClip sprintSound2;
+    AudioClip currentMouvSound;
+    AudioSource playerFoot;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +66,14 @@ public class PlayerMouvement : MonoBehaviour
 
         // unset the monitor in the begin of the game
         monitor.SetActive(false);
+
+        playerHead = this.transform.Find("PlayerVision").gameObject.GetComponent<AudioSource>();
+        playerFoot = this.transform.Find("Body").gameObject.GetComponent<AudioSource>();
+        exhaustSound = (AudioClip) Resources.Load("Sounds/SoundsEffects/exhausted");
+        walkSound1 = (AudioClip)Resources.Load("Sounds/SoundsEffects/walkstep01");
+        walkSound2 = (AudioClip)Resources.Load("Sounds/SoundsEffects/walkstep02");
+        sprintSound1 = (AudioClip)Resources.Load("Sounds/SoundsEffects/sprintstep01");
+        sprintSound2 = (AudioClip)Resources.Load("Sounds/SoundsEffects/sprintstep02");
     }
 
     private void LateUpdate()
@@ -106,6 +122,35 @@ public class PlayerMouvement : MonoBehaviour
                 Speakers[3].LaunchSound();
             }
         }
+
+        if(Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+        {
+            currentMouvSound = null;
+        }
+        else
+        {
+            if (!playerFoot.isPlaying)
+            {
+                // sprint sound
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    if (currentMouvSound == sprintSound1)
+                        currentMouvSound = sprintSound2;
+                    else
+                        currentMouvSound = sprintSound1;
+                }
+                else
+                {
+                    // walk sound
+                    if (currentMouvSound == walkSound1)
+                        currentMouvSound = walkSound2;
+                    else
+                        currentMouvSound = walkSound1;
+                }
+
+                AudioManager.Instance.DiffuseSound(playerFoot, currentMouvSound);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -152,6 +197,7 @@ public class PlayerMouvement : MonoBehaviour
             {
                 exhausted = false;
             }
+            AudioManager.Instance.DiffuseSound(playerHead, exhaustSound);
         }
         else
         {
@@ -180,8 +226,6 @@ public class PlayerMouvement : MonoBehaviour
                 }
             }
         }
-
-
 
         // calcul de la direction du joueur
         Vector3 forward = PlayerCam.transform.forward;

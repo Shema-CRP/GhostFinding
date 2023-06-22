@@ -5,8 +5,8 @@ public class PlayerFear : MonoBehaviour
     [SerializeField] float RadiusFear;
     [SerializeField] float RadiusNearFear;
     [SerializeField] LayerMask GhostLayer;
-    [SerializeField] AudioClip fearHeartBeat;
-    [SerializeField] AudioClip panicHeartBeat;
+    AudioClip fearHeartBeat;
+    AudioClip panicHeartBeat;
     AudioSource heart;
     Vector3 pos;
     byte stressedOut = 3;

@@ -11,6 +11,8 @@ public class SpeakerBehaviour : MonoBehaviour
     [SerializeField] AudioSource diffuser;
     [SerializeField] int ChargingPeak;
     [SerializeField] int CurrentCharge;
+    GameObject Player;
+    GameObject Logo;
     GameObject Noise;
     MeshRenderer CameraLogoColor;
 
@@ -19,10 +21,18 @@ public class SpeakerBehaviour : MonoBehaviour
         sound = (AudioClip) Resources.Load("Sounds/SoundsEffects/speakerSound");
         diffuser = this.transform.Find("body/Cube").GetComponent<AudioSource>();
         CurrentState = ESpeakerState.Ready;
-        CameraLogoColor = this.transform.Find("CameraViewLogo").gameObject.GetComponent<MeshRenderer>();
+        Logo = this.transform.Find("CameraViewLogo").gameObject;
+        CameraLogoColor = Logo.GetComponent<MeshRenderer>();
         CameraLogoColor.materials[0].color = Color.green;
+        Player = GameObject.Find("Player");
         CurrentCharge = ChargingPeak;
         Noise = this.transform.Find("Noise").gameObject;
+    }
+
+    private void LateUpdate()
+    {
+        // pour avoir une bonne rotation je dois multiplier le joueur par -1 ou pas
+        Logo.transform.rotation = new Quaternion(Logo.transform.rotation.x, Player.transform.rotation.y, Logo.transform.rotation.z, Logo.transform.rotation.w);
     }
 
     /// <summary>
