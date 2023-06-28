@@ -43,10 +43,13 @@ public class GeneratorBehaviour : MonoBehaviour
                 this.transform.Find("ProgressBar").gameObject.GetComponent<Renderer>().material.color = Color.green;
                 AudioManager.Instance.DiffuseSound(soundDiffuser, generatorChargedSound);
             }
-            // activate the noise
-            this.transform.Find("Noise").gameObject.SetActive(true);
-            // diffuse sound
-            AudioManager.Instance.DiffuseSound(soundDiffuser, generatorChargingSound);
+            else
+            {
+                // activate the noise
+                this.transform.Find("Noise").gameObject.SetActive(true);
+                // diffuse sound
+                AudioManager.Instance.DiffuseSound(soundDiffuser, generatorChargingSound);
+            }
         }
     }
 
