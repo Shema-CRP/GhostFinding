@@ -49,7 +49,6 @@ GameObject:
   - component: {fileID: 343807828018561394}
   - component: {fileID: 6205910355844298373}
   - component: {fileID: 3707975674926819126}
-  - component: {fileID: 9135272959099695113}
   - component: {fileID: 4106210337077342939}
   m_Layer: 0
   m_Name: Body
@@ -131,25 +130,12 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1005550050602665043}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &9135272959099695113
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1005550050602665043}
-  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.2324821, y: 2.0078049, z: 1.2639866}
-  m_Center: {x: -0.019806437, y: 0.0018945942, z: -0.009653567}
+  m_Radius: 0.78220505
+  m_Height: 2.3359673
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.1679829, z: 0.030268565}
 --- !u!82 &4106210337077342939
 AudioSource:
   m_ObjectHideFlags: 0

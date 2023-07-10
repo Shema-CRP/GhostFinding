@@ -35,6 +35,7 @@ public class PlayerMouvement : MonoBehaviour
     AudioClip sprintSound2;
     AudioClip currentMouvSound;
     AudioSource playerFoot;
+    MonitorBehaviour monitorScript;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +54,7 @@ public class PlayerMouvement : MonoBehaviour
         monitor = GameObject.Find("Monitor");
         noiseIntensivity = noise.GetComponent<NoiseState>().Intensity;
         staminaBar = GameObject.Find("Canvas/Stamina/Fill").GetComponent<Image>();
+        monitorScript = monitor.GetComponent<MonitorBehaviour>();
 
         // récupère les leurres dans le gameobject Speakerlist ils doivent être dans l'ordre afin de les récuperer correctement dans le tableau
         totalChild = GameObject.Find("SpeakersList").transform.childCount;
@@ -92,7 +94,6 @@ public class PlayerMouvement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             monitorActivate = !monitorActivate;
-            Debug.Log(monitorActivate);
             monitor.SetActive(monitorActivate);
         }
 
@@ -105,6 +106,10 @@ public class PlayerMouvement : MonoBehaviour
         // enclenchement des leurres
         if (monitorActivate)
         {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                monitorScript.DiffuseRadar();
+            }
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 Speakers[0].LaunchSound();
@@ -237,6 +242,6 @@ public class PlayerMouvement : MonoBehaviour
 
         Vector3 move = (forward * inputZ + right * inputX).normalized;
 
-        rb.MovePosition(rb.position + move * speed * Time.fixedDeltaTime);
+        rb.velocity = move * speed;
     }
 }

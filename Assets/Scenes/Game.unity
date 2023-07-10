@@ -1155,6 +1155,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5968257468920959108, guid: 0a5084d089e87194d95304ab922c74c5,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a5084d089e87194d95304ab922c74c5, type: 3}
 --- !u!1001 &109946722
@@ -8805,12 +8810,12 @@ PrefabInstance:
     - target: {fileID: 7667585929940862621, guid: ee43bef99764d804fad7cb722547b92e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.1
+      value: 6.4
       objectReference: {fileID: 0}
     - target: {fileID: 7667585929940862621, guid: ee43bef99764d804fad7cb722547b92e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 123
+      value: 138.5
       objectReference: {fileID: 0}
     - target: {fileID: 7667585929940862621, guid: ee43bef99764d804fad7cb722547b92e,
         type: 3}
@@ -10896,7 +10901,6 @@ GameObject:
   - component: {fileID: 1345038026}
   - component: {fileID: 1345038024}
   - component: {fileID: 1345038028}
-  - component: {fileID: 1345038027}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -10941,18 +10945,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07479920d14032a47bf2e424b57d9a27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1345038027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1345038023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bfb6cffad68cf1468c4f738b924b3bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1345038028
@@ -15947,6 +15939,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281395558806716840, guid: 69c865ea1921b064dbea43d87c084e51,
+        type: 3}
+      propertyPath: ChargingSpeed
+      value: 0.017
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281395558806716840, guid: 69c865ea1921b064dbea43d87c084e51,
+        type: 3}
+      propertyPath: MaxRadarCharge
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4969382973136230509, guid: 69c865ea1921b064dbea43d87c084e51, type: 3}

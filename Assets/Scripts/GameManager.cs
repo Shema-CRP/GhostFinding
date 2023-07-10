@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     GameObject EndDoor;
     GameObject ExitDoor;
     PlayerState PlayerState;
+    MonitorBehaviour MonitorBehaviourScript;
     byte NbTotalGenerator;
     byte NbActiveGenerator;
     int totalChild;
@@ -25,6 +26,8 @@ public class GameManager : MonoBehaviour
         ExitDoor = GameObject.Find("ExitDoor");
 
         PlayerState = Player.GetComponent<PlayerState>();
+
+        MonitorBehaviourScript = Player.transform.Find("Monitor").GetComponent<MonitorBehaviour>();
 
         // Count generators
         NbTotalGenerator = (byte) GameObject.Find("GeneratorsList").transform.childCount;
@@ -71,6 +74,9 @@ public class GameManager : MonoBehaviour
             if (!Speakers[i].IsSoundPlaying())
                 Speakers[i].Charging();
         }
+
+        // charge the radar of monitor
+        MonitorBehaviourScript.IncrementBattery();
     }
 
     public void PowerDoor()
