@@ -76,16 +76,8 @@ public class PlayerMouvement : MonoBehaviour
         walkSound2 = (AudioClip)Resources.Load("Sounds/SoundsEffects/walkstep02");
         sprintSound1 = (AudioClip)Resources.Load("Sounds/SoundsEffects/sprintstep01");
         sprintSound2 = (AudioClip)Resources.Load("Sounds/SoundsEffects/sprintstep02");
-    }
-
-    private void LateUpdate()
-    {
-        //centrer la souris chaque frame
-        if (hideCursor)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+        
+        GameManager.Instance.HideCursor();
     }
 
     private void Update()
@@ -98,9 +90,9 @@ public class PlayerMouvement : MonoBehaviour
         }
 
         // echap
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            BootManager.Instance.ChangeScene("Game", "Menu");
+            GameManager.Instance.PauseNavigate();
         }
 
         // enclenchement des leurres
