@@ -45,7 +45,7 @@ public class PlayerMouvement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         normalSpeed = GetComponent<PlayerState>().PlayerWalkSpeed;
         sprintSpeed = GetComponent<PlayerState>().PlayerSprintSpeed;
-        lookSpeed = GetComponent<PlayerState>().PlayerCameraSensibility;
+        lookSpeed = PlayerState.Instance.PlayerCameraSensibility;
         exhaustSpeed = GetComponent<PlayerState>().exhaustSpeed;
         stamina = maxStamina;
         exhausted = false;

@@ -110,11 +110,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd66c4dbaa55f54bb447de75b8c7d4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GhostSprite: {fileID: 21300000, guid: ffe1f2d38f8aa7d4c8c6fed75f45d42e, type: 3}
+  GhostSprite: {fileID: 21300000, guid: ba46fc04d94f84b47b07dfc69708b194, type: 3}
   PlayerCamera: {fileID: 0}
   framesAppears: 10
   framesRoll: 300
-  chanceToAppears: 13
+  chanceToAppears: 100
 --- !u!54 &5537020596887499502
 Rigidbody:
   m_ObjectHideFlags: 0

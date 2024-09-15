@@ -15795,6 +15795,27 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1848164200072351413, guid: 69c865ea1921b064dbea43d87c084e51,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f4fab1be9122ffe4ab581abda126f84c,
+        type: 3}
+    - target: {fileID: 1975035892243110842, guid: 69c865ea1921b064dbea43d87c084e51,
+        type: 3}
+      propertyPath: m_Value
+      value: 8.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975035892243110842, guid: 69c865ea1921b064dbea43d87c084e51,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975035892243110842, guid: 69c865ea1921b064dbea43d87c084e51,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2461701728605956473, guid: 69c865ea1921b064dbea43d87c084e51,
         type: 3}
       propertyPath: m_Sprite

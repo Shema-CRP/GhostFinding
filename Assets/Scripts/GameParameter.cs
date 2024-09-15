@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameParameter : MonoBehaviour
 {
-    GameParameter Instance;
+    public static GameParameter Instance;
+    float SensibilitySliderValue;
 
     private void Awake()
     {
@@ -12,48 +14,35 @@ public class GameParameter : MonoBehaviour
             Instance = this;
     }
 
-    KeyCode EInputForwardDefault;
-    KeyCode EInputBackDefault;
-    KeyCode EInputLeftDefault;
-    KeyCode EInputRightDefault;
-    KeyCode EInputInteractDefault;
-    KeyCode EInputMonitorDefault;
-    KeyCode EInputBait1Default;
-    KeyCode EInputBait2Default;
-    KeyCode EInputBait3Default;
-    KeyCode EInputBait4Default;
-    KeyCode EInputRadarDefault;
-    float SensibilityDefault;
-    float VolumeDefault;
+    float PlayerSensibilityDefault;
+    float GlobalVolumeDefault;
 
-    public KeyCode EInputForward;
-    public KeyCode EInputBack;
-    public KeyCode EInputLeft;
-    public KeyCode EInputRight;
-    public KeyCode EInputInteract;
-    public KeyCode EInputMonitor;
-    public KeyCode EInputBait1;
-    public KeyCode EInputBait2;
-    public KeyCode EInputBait3;
-    public KeyCode EInputBait4;
-    public KeyCode EInputRadar;
-    public float Sensibility;
-    public float Volume;
+    public float PlayerSensibility;
+    public float GeneralVolume;
 
     private void Start()
     {
-        EInputForwardDefault = KeyCode.W;
-        EInputLeftDefault = KeyCode.A;
-        EInputBackDefault = KeyCode.S;
-        EInputRightDefault = KeyCode.D;
-        EInputInteractDefault = KeyCode.Mouse0;
-        EInputMonitorDefault = KeyCode.Space;
-        EInputRadarDefault = KeyCode.Q;
-        EInputBait1Default = KeyCode.Alpha1;
-        EInputBait2Default = KeyCode.Alpha2;
-        EInputBait3Default = KeyCode.Alpha3;
-        EInputBait4Default = KeyCode.Alpha4;
-        SensibilityDefault = 5.0f;
-        VolumeDefault = 5.0f;
+        PlayerSensibilityDefault = 5.0f;
+        GlobalVolumeDefault = 5.0f;
+        SensibilitySliderValue = this.transform.Find("SensibilitySlider").GetComponent<Slider>().value;
+
+        // if there are already a value in the player preference, use it else use default value
+        if (PlayerPrefs.HasKey("PlayerSensibility"))
+        {
+            SensibilitySliderValue = PlayerPrefs.GetFloat("PlayerSensibility");
+        }
+        else
+        {
+            SensibilitySliderValue = PlayerSensibilityDefault;
+        }
+
+    }
+
+    public void WritePlayerSensibility()
+    {
+        // save player preference in a save file
+        PlayerPrefs.SetFloat("PlayerSensibility", SensibilitySliderValue);
+        // updates sensibility
+        PlayerState.Instance.PlayerCameraSensibility = SensibilitySliderValue;
     }
 }

@@ -43,7 +43,7 @@ public class DoorStateBehaviour : MonoBehaviour
         {
             icon = Battery50P;
         }
-        if (percentResult >= 10)
+        else if (percentResult >= 10)
         {
             icon = Battery25P;
         }

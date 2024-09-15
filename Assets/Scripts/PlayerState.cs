@@ -2,6 +2,14 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
+    public static PlayerState Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
+
     public enum EPlayerLife { Live, Dead, Escape };
     [SerializeField] public EPlayerLife PlayerLife;
     [SerializeField] public float PlayerWalkSpeed;
