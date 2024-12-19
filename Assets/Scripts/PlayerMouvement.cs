@@ -29,6 +29,7 @@ public class PlayerMouvement : MonoBehaviour
     UnityEngine.UI.Image staminaBar;
     AudioClip exhaustSound;
     AudioSource playerHead;
+    AudioClip sonarSound;
     AudioClip walkSound1;
     AudioClip walkSound2;
     AudioClip sprintSound1;
@@ -76,6 +77,7 @@ public class PlayerMouvement : MonoBehaviour
         walkSound2 = (AudioClip)Resources.Load("Sounds/SoundsEffects/walkstep02");
         sprintSound1 = (AudioClip)Resources.Load("Sounds/SoundsEffects/sprintstep01");
         sprintSound2 = (AudioClip)Resources.Load("Sounds/SoundsEffects/sprintstep02");
+        sonarSound = (AudioClip)Resources.Load("Sounds/SoundsEffects/gfSonar");
         
         GameManager.Instance.HideCursor();
     }
@@ -90,7 +92,7 @@ public class PlayerMouvement : MonoBehaviour
         }
 
         // echap
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             GameManager.Instance.PauseNavigate();
         }
@@ -100,6 +102,7 @@ public class PlayerMouvement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
+                AudioManager.Instance.DiffuseSound(playerHead, sonarSound);
                 monitorScript.DiffuseRadar();
             }
             if (Input.GetKeyDown(KeyCode.Alpha1))
