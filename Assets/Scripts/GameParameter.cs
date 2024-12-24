@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class GameParameter : MonoBehaviour
 {
     public static GameParameter Instance;
-    float SensibilitySliderValue;
+    GameSettingsManager Settings;
+    Slider SensibilitySlider;
+    Slider EffectVolumeSlider;
 
     private void Awake()
     {
@@ -14,35 +16,51 @@ public class GameParameter : MonoBehaviour
             Instance = this;
     }
 
-    float PlayerSensibilityDefault;
-    float GlobalVolumeDefault;
-
-    public float PlayerSensibility;
-    public float GeneralVolume;
-
     private void Start()
     {
-        PlayerSensibilityDefault = 5.0f;
-        GlobalVolumeDefault = 5.0f;
-        SensibilitySliderValue = this.transform.Find("SensibilitySlider").GetComponent<Slider>().value;
+        Settings = GameObject.Find("GameManager").GetComponent<GameSettingsManager>();
+        SensibilitySlider = this.gameObject.transform.GetChild(0).GetComponent<Slider>();
+        SensibilitySlider.value = Settings.GetMouseSensivity();
+        EffectVolumeSlider = this.gameObject.transform.GetChild(1).GetComponent<Slider>();
+        EffectVolumeSlider.value = Settings.GetEffectVolume();
+    }
 
-        // if there are already a value in the player preference, use it else use default value
-        if (PlayerPrefs.HasKey("PlayerSensibility"))
-        {
-            SensibilitySliderValue = PlayerPrefs.GetFloat("PlayerSensibility");
-        }
-        else
-        {
-            SensibilitySliderValue = PlayerSensibilityDefault;
-        }
 
+    // Les méthodes WritePlayerSensibility et WriteEffectVolume sont censé être appelé dans le Slider OnChange, mais j'ai pas réussi, donc voila un Update moche
+
+    private void Update()
+    {
+        if (SensibilitySlider != null && EffectVolumeSlider != null)
+        {
+            // Si l'ecrant d'option est affiché
+            if (this.gameObject.activeSelf)
+            {
+                if (SensibilitySlider.value != Settings.GetMouseSensivity())
+                {
+                    Settings.SaveMouseSensivity(SensibilitySlider.value);
+                }
+                if (EffectVolumeSlider.value != Settings.GetEffectVolume())
+                {
+                    Settings.SaveEffectVolume(EffectVolumeSlider.value);
+                }
+            }
+        }
     }
 
     public void WritePlayerSensibility()
     {
-        // save player preference in a save file
-        PlayerPrefs.SetFloat("PlayerSensibility", SensibilitySliderValue);
-        // updates sensibility
-        PlayerState.Instance.PlayerCameraSensibility = SensibilitySliderValue;
+        if (SensibilitySlider != null)
+        {
+            //Settings.SaveMouseSensivity(SensibilitySlider.value);
+        }
+    }
+
+    public void WriteEffectVolume()
+    {
+        if (EffectVolumeSlider != null)
+        {
+            Debug.Log("VOLUME Valeur changée : " + SensibilitySlider.value);
+            // Settings.SaveEffectVolume(EffectVolumeSlider.value);
+        }
     }
 }

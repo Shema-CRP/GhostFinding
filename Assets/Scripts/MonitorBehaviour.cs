@@ -7,9 +7,11 @@ public class MonitorBehaviour : MonoBehaviour
     [SerializeField] float ChargingSpeed;
     [SerializeField] public float RadarCharge;
     [SerializeField] public float MaxRadarCharge = 100;
-    [SerializeField] private float secondsOfNoise = 2.5f;
+    [SerializeField] private float secondsOfNoise = 5f;
     GameObject noise;
     Animator animController;
+    AudioClip sonarSound;
+    AudioSource soundSource;
     SpriteRenderer RadarStateColor;
     IEnumerator CoroutineActivateNoise;
 
@@ -22,6 +24,8 @@ public class MonitorBehaviour : MonoBehaviour
         RadarStateColor = transform.Find("RadarState").gameObject.GetComponent<SpriteRenderer>();
         RadarStateColor.color = Color.green;
         CoroutineActivateNoise = ActivateNoise(secondsOfNoise);
+        
+        soundSource = this.gameObject.GetComponent<AudioSource>();
     }
 
     private IEnumerator ActivateNoise(float timeToWait)

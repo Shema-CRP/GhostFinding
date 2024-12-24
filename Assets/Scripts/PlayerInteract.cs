@@ -20,6 +20,7 @@ public class PlayerInteract : MonoBehaviour
     void Update()
     {
         StartPoint = vision.transform.position;
+
         Ray ray = new Ray(StartPoint, vision.transform.forward);
         bool isContact = Physics.Raycast(ray, out RaycastHit hitObject, scope);
 

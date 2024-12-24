@@ -7,9 +7,11 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
+    GameSettingsManager Settings;
 
     void Start()
     {
+        Settings = GameObject.Find("GameManager").GetComponent<GameSettingsManager>();
         if (Instance == null)
         {
             Instance = this;
@@ -21,6 +23,7 @@ public class AudioManager : MonoBehaviour
         // activate the sound if it is off or if the sound played is different from that requested
         if (source.isPlaying == false || source.clip != sound)
         {
+            source.volume = Settings.GetEffectVolume();
             source.clip = sound;
             source.Play();
         }

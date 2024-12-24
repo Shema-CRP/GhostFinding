@@ -8,6 +8,7 @@ public class PlayerMouvement : MonoBehaviour
     
     GameObject[] SpeakersObject;
     SpeakerBehaviour[] Speakers;
+    GameSettingsManager Settings;
 
     Camera PlayerCam;
     Rigidbody rb;
@@ -27,6 +28,7 @@ public class PlayerMouvement : MonoBehaviour
     float maxStamina = 1f;
     float drainStamina;
     UnityEngine.UI.Image staminaBar;
+    GameObject crossair;
     AudioClip exhaustSound;
     AudioSource playerHead;
     AudioClip sonarSound;
@@ -38,15 +40,20 @@ public class PlayerMouvement : MonoBehaviour
     AudioSource playerFoot;
     MonitorBehaviour monitorScript;
 
+    const float VERTICAL_LIMIT = 10f;
+    const float SENSIVITY_MULTIPLIER = 2f;
+
     // Start is called before the first frame update
     void Start()
     {
         int totalChild;
+        Settings = GameObject.Find("GameManager").GetComponent<GameSettingsManager>();
         PlayerCam = this.transform.Find("PlayerVision").gameObject.GetComponent<Camera>();
+        crossair = this.transform.Find("PlayerVision").Find("Canvas").Find("Crossair").gameObject;
         rb = GetComponent<Rigidbody>();
         normalSpeed = GetComponent<PlayerState>().PlayerWalkSpeed;
         sprintSpeed = GetComponent<PlayerState>().PlayerSprintSpeed;
-        lookSpeed = PlayerState.Instance.PlayerCameraSensibility;
+        lookSpeed = Settings.GetMouseSensivity();
         exhaustSpeed = GetComponent<PlayerState>().exhaustSpeed;
         stamina = maxStamina;
         exhausted = false;
@@ -77,8 +84,9 @@ public class PlayerMouvement : MonoBehaviour
         walkSound2 = (AudioClip)Resources.Load("Sounds/SoundsEffects/walkstep02");
         sprintSound1 = (AudioClip)Resources.Load("Sounds/SoundsEffects/sprintstep01");
         sprintSound2 = (AudioClip)Resources.Load("Sounds/SoundsEffects/sprintstep02");
+
         sonarSound = (AudioClip)Resources.Load("Sounds/SoundsEffects/gfSonar");
-        
+
         GameManager.Instance.HideCursor();
     }
 
@@ -89,6 +97,7 @@ public class PlayerMouvement : MonoBehaviour
         {
             monitorActivate = !monitorActivate;
             monitor.SetActive(monitorActivate);
+            crossair.SetActive(!monitorActivate);
         }
 
         // echap
@@ -102,7 +111,9 @@ public class PlayerMouvement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                AudioManager.Instance.DiffuseSound(playerHead, sonarSound);
+                // le son doit s'activer meme si le moniteur est etteind, donc la méthode DiffuseRadar ne prendra pas en charge le son
+                if(monitorScript.RadarCharge >= monitorScript.MaxRadarCharge)
+                    AudioManager.Instance.DiffuseSound(playerHead, sonarSound);
                 monitorScript.DiffuseRadar();
             }
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -156,16 +167,18 @@ public class PlayerMouvement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        mouseX = Input.GetAxis("Mouse X");
-        mouseY = Input.GetAxis("Mouse Y") * lookSpeed;
-        mouseY = Mathf.Clamp(mouseY, -85f, 85f);
+        // mettre à jour la sensibilité selon les paramètres
+        lookSpeed = Settings.GetMouseSensivity();
+
+        mouseX = Input.GetAxis("Mouse X") * (lookSpeed * SENSIVITY_MULTIPLIER);
+        mouseY = Input.GetAxis("Mouse Y") * (lookSpeed * SENSIVITY_MULTIPLIER);
 
         float speed = normalSpeed;
         float inputX = Input.GetAxis("Horizontal");
         float inputZ = Input.GetAxis("Vertical");
 
         // rotation
-        transform.eulerAngles += lookSpeed * new Vector3(0, mouseX, 0) * Time.fixedDeltaTime;
+        transform.eulerAngles += new Vector3(0, mouseX, 0);
 
        
         if(inputX == 0 && inputZ == 0)
