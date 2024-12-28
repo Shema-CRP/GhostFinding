@@ -16,7 +16,6 @@ public class PlayerMouvement : MonoBehaviour
     float sprintSpeed;
     float exhaustSpeed;
     float stamina;
-    bool hideCursor = true;
     bool exhausted;
     float mouseX = 0f;
     float mouseY = 0f;
@@ -248,6 +247,7 @@ public class PlayerMouvement : MonoBehaviour
         forward.Normalize();
         right.Normalize();
 
+        Debug.Log("Axys + " + inputZ);
         Vector3 move = (forward * inputZ + right * inputX).normalized;
 
         rb.velocity = move * speed;

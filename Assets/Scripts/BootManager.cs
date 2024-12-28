@@ -33,7 +33,6 @@ public class BootManager : MonoBehaviour
 
     public void ChangeScene(string nameOfCurrentScene, string nameOfNewScene)
     {
-        Debug.Log("change");
         //anim.SetBool("HideScreen", true);
         SceneManager.LoadScene(nameOfNewScene, LoadSceneMode.Additive);
         SceneManager.UnloadSceneAsync(nameOfCurrentScene);

@@ -63,6 +63,8 @@ public class GameManager : MonoBehaviour
         PauseScreen = PauseMenuScreen.transform.Find("Background/PauseSection").gameObject;
         OptionScreen = PauseMenuScreen.transform.Find("Background/OptionSection").gameObject;
         PlayerPauseMenu = EPauseMenu.Play;
+
+        ResumeGame();
     }
 
     // Update is called once per frame

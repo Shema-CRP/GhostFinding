@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
     GameSettingsManager Settings;
 
-    void Start()
+    void Awake()
     {
         Settings = GameObject.Find("GameManager").GetComponent<GameSettingsManager>();
         if (Instance == null)
