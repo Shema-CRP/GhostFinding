@@ -59,7 +59,6 @@ public class GameParameter : MonoBehaviour
     {
         if (EffectVolumeSlider != null)
         {
-            Debug.Log("VOLUME Valeur changée : " + SensibilitySlider.value);
             // Settings.SaveEffectVolume(EffectVolumeSlider.value);
         }
     }

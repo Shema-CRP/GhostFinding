@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour
         HideCursor();
     }
 
-    public void QuitGame()
+    public void GoToMenu()
     {
         BootManager.Instance.ChangeScene("Game", "Menu");
     }

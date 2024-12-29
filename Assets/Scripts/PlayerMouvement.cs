@@ -247,7 +247,6 @@ public class PlayerMouvement : MonoBehaviour
         forward.Normalize();
         right.Normalize();
 
-        Debug.Log("Axys + " + inputZ);
         Vector3 move = (forward * inputZ + right * inputX).normalized;
 
         rb.velocity = move * speed;
